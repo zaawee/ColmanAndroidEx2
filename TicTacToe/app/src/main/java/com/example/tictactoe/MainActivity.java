@@ -15,9 +15,27 @@ public class MainActivity extends Activity {
     private class ClickListener implements View.OnClickListener{
         public void onClick(View view){
             ImageButton button = (ImageButton)view;
+            int place = button.getId();
+
+            // Check if this place is hold.
+            // if(place)
+
             if(isXTurn){
                 ((ImageButton) view).setImageResource(R.drawable.x);
+
+
+
             }
+            else
+            {
+
+
+            }
+
+            // Check if game is done
+
+            // Pass to opponent
+            isXTurn = !isXTurn;
         }
     }
 
@@ -28,9 +46,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Init the buttons
         ImageButton button1 = (ImageButton)findViewById(R.id.square1);
         button1.setOnClickListener(singleListener);
-        button1.setTag(1,1);
+        // button1.setTag(1,1);
         ImageButton button2 = (ImageButton)findViewById(R.id.square2);
         button2.setOnClickListener(singleListener);
         ImageButton button3 = (ImageButton)findViewById(R.id.square3);
