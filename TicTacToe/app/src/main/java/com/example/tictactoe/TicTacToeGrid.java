@@ -35,6 +35,15 @@ public class TicTacToeGrid {
 
     // 0 - returns tie, 1 - X wins, 2 - O wins
     public int checkWin() {
-        return 0;
+
+        boolean isDiag1 = true;
+        boolean isDiag2 = true;
+
+        // Check diagonal win
+        for (int i = 0; i<3;i++) {
+            isDiag1 = isDiag1 && grid[i][i] == grid[0][0] && grid[i][i]!=0;
+
+        }
+        return -1;
     }
 }
