@@ -2,18 +2,18 @@ package com.example.tictactoe;
 
 import android.app.Activity;
 import android.graphics.Point;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
-import static android.R.id.button1;
-
 public class MainActivity extends Activity {
 
     private int[][] grid = new int[3][3];
     private boolean isXTurn = true;
     private TicTacToeGrid _game;
+
+    //afkaskdfjlkasjdf
 
     private class ClickListener implements View.OnClickListener {
         public void onClick(View view) {
@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
 
                 // Pass to opponent
                 isXTurn = !isXTurn;
-
             }
         }
     }
@@ -73,32 +72,40 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        ImageButton button1 = (ImageButton)findViewById(R.id.square1);
-
         // Create board game
         this._game = new TicTacToeGrid();
 
         // Init the buttons with places
-
+        ImageButton button1 = (ImageButton) findViewById(R.id.square1);
         button1.setOnClickListener(singleListener);
-        button1.setTag(1,1);
-        ImageButton button2 = (ImageButton)findViewById(R.id.square2);
+        button1.setTag(1);
+        ImageButton button2 = (ImageButton) findViewById(R.id.square2);
         button2.setOnClickListener(singleListener);
-        ImageButton button3 = (ImageButton)findViewById(R.id.square3);
+        button2.setTag(2);
+        ImageButton button3 = (ImageButton) findViewById(R.id.square3);
         button3.setOnClickListener(singleListener);
-        ImageButton button4 = (ImageButton)findViewById(R.id.square4);
+        button3.setTag(3);
+        ImageButton button4 = (ImageButton) findViewById(R.id.square4);
         button4.setOnClickListener(singleListener);
-        ImageButton button5 = (ImageButton)findViewById(R.id.square5);
+        button4.setTag(4);
+        ImageButton button5 = (ImageButton) findViewById(R.id.square5);
         button5.setOnClickListener(singleListener);
-        ImageButton button6 = (ImageButton)findViewById(R.id.square6);
+        button5.setTag(5);
+        ImageButton button6 = (ImageButton) findViewById(R.id.square6);
         button6.setOnClickListener(singleListener);
-        ImageButton button7 = (ImageButton)findViewById(R.id.square7);
+        button6.setTag(6);
+        ImageButton button7 = (ImageButton) findViewById(R.id.square7);
         button7.setOnClickListener(singleListener);
-        ImageButton button8 = (ImageButton)findViewById(R.id.square8);
+        button7.setTag(7);
+        ImageButton button8 = (ImageButton) findViewById(R.id.square8);
         button8.setOnClickListener(singleListener);
-        ImageButton button9 = (ImageButton)findViewById(R.id.square9);
+        button8.setTag(8);
+        ImageButton button9 = (ImageButton) findViewById(R.id.square9);
         button9.setOnClickListener(singleListener);
+        button9.setTag(9);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
     }
 
 }
