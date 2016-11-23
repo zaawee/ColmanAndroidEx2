@@ -1,10 +1,13 @@
 package com.example.tictactoe;
 
 import android.app.Activity;
+import android.graphics.Point;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -17,6 +20,7 @@ public class MainActivity extends Activity {
 
     private int[][] grid = new int[3][3];
     private boolean isXTurn = true;
+    private TicTacToeGrid _game;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -63,23 +67,49 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             ImageButton button = (ImageButton) view;
             int place = (Integer)(button.getTag());
-
+            Point currPoint = new Point(place % 3, place / 3 );
             // Check if this place is hold.
-            // if(place)
+            if((_game.isEmpty(currPoint.x,currPoint.y))) {
+                // Draw
+                if (isXTurn)
+                {
+                    ((ImageButton) view).setImageResource(R.drawable.x);
+                    _game.setX(currPoint.x,currPoint.y);
+                }
+                else
+                {
+                    ((ImageButton) view).setImageResource(R.drawable.o);
+                    _game.setO(currPoint.x,currPoint.y);
+                }
 
-            if (isXTurn) {
-                ((ImageButton) view).setImageResource(R.drawable.x);
+                // Check if game is done
+                int Win = _game.checkWin();
+
+                switch (Win)
+                {
+                    case 1:
+                    {
+                        ((ImageView)findViewById (R.id.image_label)).setImageResource(R.drawable.xwin);
+                        break;
+                    }
+                    case 2:
+                    {
+                        ((ImageView)findViewById (R.id.image_label)).setImageResource(R.drawable.owin);
+                        break;
+                    }
+                    case 0:
+                    {
+                        ((ImageView)findViewById (R.id.image_label)).setImageResource(R.drawable.nowin);
+                        break;
+                    }
+
+                }
 
 
-            } else {
 
-
+                // Pass to opponent
+                isXTurn = !isXTurn;
             }
-
-            // Check if game is done
-
-            // Pass to opponent
-            isXTurn = !isXTurn;
         }
     }
 
@@ -89,6 +119,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Create board game
+        this._game = new TicTacToeGrid();
 
         // Init the buttons with places
         ImageButton button1 = (ImageButton) findViewById(R.id.square1);
