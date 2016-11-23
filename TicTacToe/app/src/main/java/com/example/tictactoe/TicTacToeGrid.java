@@ -24,6 +24,7 @@ public class TicTacToeGrid {
     public void setX(int x, int y){
         fullTiles++;
         grid[x][y]=1;
+        x = 2;
     }
 
     public void setO(int x, int y){
