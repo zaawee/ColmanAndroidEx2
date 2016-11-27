@@ -12,57 +12,91 @@ public class MainActivity extends Activity {
 
     private boolean isXTurn = true;
 
-    private TicTacToeGrid _game;
+    private TicTacToeGrid _game = new TicTacToeGrid();
 
     private class ClickListener implements View.OnClickListener {
         public void onClick(View view) {
-            ImageButton button = (ImageButton) view;
-            int place = (Integer)(button.getTag());
-            Point currPoint = new Point((place % 3), (place / 3) );
-            // Check if this place is hold.
-            if((_game.isEmpty(currPoint.x,currPoint.y))) {
+            if (!_game.isEndofgame()) {
 
-                // Draw
-                if (isXTurn)
-                {
-                    ((ImageButton) view).setImageResource(R.drawable.x);
-                    _game.setX(currPoint.x,currPoint.y);
-                }
-                else
-                {
-                    ((ImageButton) view).setImageResource(R.drawable.o);
-                    _game.setO(currPoint.x,currPoint.y);
-                }
+                ImageButton button = (ImageButton) view;
 
-                // Check if game is done
-                int Win = _game.checkWin();
-                isXTurn = !isXTurn;
-                ImageView downLabel =((ImageView)findViewById (R.id.image_label));
-                switch (Win)
-                {
-                    case 1:
-                    {
-                        downLabel.setImageResource(R.drawable.xwin);
-                        break;
+                int place = (Integer) (button.getTag());
+                Point currPoint = new Point((place / 3), (place % 3));
+                // Check if this place is hold.
+                if ((_game.isEmpty(currPoint.x, currPoint.y))) {
+
+                    // Draw
+                    if (isXTurn) {
+                        ((ImageButton) view).setImageResource(R.drawable.x);
+                        _game.setX(currPoint.x, currPoint.y);
+                    } else {
+                        ((ImageButton) view).setImageResource(R.drawable.o);
+                        _game.setO(currPoint.x, currPoint.y);
                     }
-                    case 2:
-                    {
-                        downLabel.setImageResource(R.drawable.owin);
-                        break;
-                    }
-                    case 0:
-                    {
-                        downLabel.setImageResource(R.drawable.nowin);
-                        break;
-                    }
-                    default:{
-                        if (isXTurn){
-                            downLabel.setImageResource(R.drawable.xplay);
-                        }else {
-                            downLabel.setImageResource(R.drawable.oplay);
+
+                    // Check if game is done
+                    int Win = _game.checkWin();
+
+                    // mark the wining strike
+
+                    ImageView downLabel = ((ImageView) findViewById(R.id.image_label));
+                    ImageView winMarking = ((ImageView) findViewById(R.id.win_marking));
+
+                    switch (Win) {
+                        case 1: {
+                            winMarking.setImageResource(R.drawable.mark1);
+                            break;
+                        }
+                        case 2: {
+                            winMarking.setImageResource(R.drawable.mark2);
+                            break;
+                        }
+                        case 3: {
+                            winMarking.setImageResource(R.drawable.mark3);
+                            break;
+                        }
+                        case 4: {
+                            winMarking.setImageResource(R.drawable.mark4);
+                            break;
+                        }
+                        case 5: {
+                            winMarking.setImageResource(R.drawable.mark5);
+                            break;
+                        }
+                        case 6: {
+                            winMarking.setImageResource(R.drawable.mark6);
+                            break;
+                        }
+                        case 7: {
+                            winMarking.setImageResource(R.drawable.mark7);
+                            break;
+                        }
+                        case 8: {
+                            winMarking.setImageResource(R.drawable.mark8);
+                            break;
+                        }
+                        case 0: {
+                            downLabel.setImageResource(R.drawable.nowin);
+                            break;
+                        }
+                        default: {
+                            if (!isXTurn) {
+                                downLabel.setImageResource(R.drawable.xplay);
+                            } else {
+                                downLabel.setImageResource(R.drawable.oplay);
+                            }
                         }
                     }
 
+                    if (Win < 9 && Win > 0) {
+                        if (isXTurn) {
+                            downLabel.setImageResource(R.drawable.xwin);
+                        } else {
+                            downLabel.setImageResource(R.drawable.owin);
+                        }
+
+                    }
+                    isXTurn = !isXTurn;
                 }
             }
         }
