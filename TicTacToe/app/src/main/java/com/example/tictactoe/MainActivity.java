@@ -1,15 +1,17 @@
 package com.example.tictactoe;
 
 import android.app.Activity;
-import android.graphics.Point;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import android.graphics.Point;
+
 public class MainActivity extends Activity {
 
     private boolean isXTurn = true;
+
     private TicTacToeGrid _game;
 
     private class ClickListener implements View.OnClickListener {
@@ -62,9 +64,6 @@ public class MainActivity extends Activity {
                     }
 
                 }
-
-
-                // Pass to opponent
             }
         }
     }
@@ -76,11 +75,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create board game
-        this._game = new TicTacToeGrid();
-
-        // Init the buttons with places
-        ImageButton button1 = (ImageButton) findViewById(R.id.square1);
+        ImageButton button1 = (ImageButton)findViewById(R.id.square1);
         button1.setOnClickListener(singleListener);
         button1.setTag(0);
         ImageButton button2 = (ImageButton) findViewById(R.id.square2);
